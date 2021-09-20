@@ -1,0 +1,38 @@
+// Variables
+$lineHeightList: (
+  big: 2,
+  regular: 1.5,
+  small: 0.9,
+);
+
+$defaultPaddings: (
+  1: $gap-xxsmall,
+  2: $gap-small,
+  3: $gap-regular,
+  4: $gap-large,
+  5: $gap-xlarge,
+  6: $gap-xxlarge,
+  7: $gap-xxxlarge,
+  8: $gap-huge,
+);
+
+// Mixins
+@mixin lineHeight($size) {
+  .typography--line-height-#{$size} {
+    line-height: map-get($lineHeightList, $size);
+  }
+}
+
+@mixin gutter($side) {
+  @for $i from 1 through length($defaultPaddings) {
+    .typography--gutter-#{$side}-#{$i} {
+      padding-#{$side}: map-get($defaultPaddings, $i);
+    }
+  }
+}
+
+@mixin align($option) {
+  .typography--#{$option} {
+    text-align: #{$option};
+  }
+}

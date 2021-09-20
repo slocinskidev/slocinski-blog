@@ -1,0 +1,49 @@
+:root {
+  --fontRegular: 400;
+  --fontMedium: 500;
+  --fontBold: 700;
+  --fontFamily-sans: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  --c-persianPink: #f16cad;
+  --c-grey1: #333;
+  --c-grey2: #666;
+  --c-grey3: #999;
+  --c-grey4: #c8c8c8;
+  --c-background: #fafafa;
+  --c-white: #fff;
+  --c-black: #0c0c0c;
+  --c-red: #ff3333;
+  --xxs: 1.2rem;
+  --xs: 1.4rem;
+  --s: 1.6rem;
+  --m: 2rem;
+  --l: 2.4rem;
+  --xl: 3.6rem;
+  --xxl: 5.6rem;
+  --borderSmall: 0.5rem;
+  --borderMedium: 2rem;
+  --spaceXsmall: 0.6rem;
+  --spaceSmall: 1rem;
+  --spaceNarrow: 1.5rem;
+  --spaceRegular: 2rem;
+  --spaceBig: 3.6rem;
+}
+
+html {
+  font-size: 62.5%; // 1rem => 10px
+}
+
+body {
+  font-size: 1.6rem;
+  box-sizing: border-box;
+  font-family: var(--fontFamily-sans);
+  background-color: var(--c-background);
+}
+
+.main {
+  margin: 0 auto;
+  max-width: 1920px;
+  padding: var(--spaceSmall);
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  grid-column-gap: 5rem;
+}

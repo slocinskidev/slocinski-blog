@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Typography should render correcty with required and optional props 1`] = `
+<h1
+  class="typography testClass typography--h1 typography--gutter-bottom-1 typography--gutter-top-1 typography--gutter-left-1 typography--gutter-right-1 typography--line-height-big typography--center typography--bold typography--italic"
+  data-testid="typography"
+>
+  Test Lorem Ipsum
+</h1>
+`;

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the Link component renders correctly with required and optional props 1`] = `
+<a
+  class="link test-class link--nav"
+  href="/"
+>
+  TestLink
+</a>
+`;

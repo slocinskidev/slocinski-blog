@@ -1,0 +1,103 @@
+@import 'styles/common/component-set.scss';
+@import './utils.scss';
+
+.typography {
+  font-weight: auto;
+
+  &--bold {
+    font-weight: 600;
+  }
+
+  &--black {
+    font-weight: 900;
+  }
+
+  &--italic {
+    font-style: italic;
+  }
+
+  &--h1 {
+    @include font-size(26);
+
+    @include breakpoint(md-up) {
+      @include font-size(57);
+    }
+  }
+
+  &--h2 {
+    @include font-size(24);
+
+    @include breakpoint(md-up) {
+      @include font-size(42);
+    }
+  }
+
+  &--h3 {
+    @include font-size(24);
+
+    @include breakpoint(md-up) {
+      @include font-size(32);
+    }
+  }
+
+  &--sub-h1 {
+    @extend .typography--h2;
+  }
+
+  &--sub-h2 {
+    @include font-size(18);
+
+    @include breakpoint(md-up) {
+      @include font-size(24);
+    }
+  }
+
+  &--body1 {
+    @include font-size(16);
+
+    @include breakpoint(xs-up) {
+      @include font-size(20);
+    }
+  }
+
+  &--body2 {
+    @include font-size(14);
+
+    @include breakpoint(md-up) {
+      @include font-size(18);
+    }
+  }
+
+  &--body3 {
+    @include font-size(14);
+  }
+
+  &--body4 {
+    @include font-size(14);
+
+    @include breakpoint(md-up) {
+      @include font-size(16);
+    }
+  }
+
+  &--body5 {
+    @include font-size(12);
+  }
+
+  &--body6 {
+    @include font-size(22);
+  }
+}
+
+@include lineHeight('big');
+@include lineHeight('regular');
+@include lineHeight('small');
+
+@include gutter('bottom');
+@include gutter('top');
+@include gutter('left');
+@include gutter('right');
+
+@include align('inherit');
+@include align('left');
+@include align('center');
