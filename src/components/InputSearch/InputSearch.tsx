@@ -20,7 +20,7 @@ const InputSearch: React.FC<InputSearchProps> = ({
         placeholder={placeholder}
         {...props}
       />
-      <Icon icon={icons.roundSearch} className="icon" />
+      <Icon icon={icons.bxSearch} className="icon" />
     </div>
   );
 };

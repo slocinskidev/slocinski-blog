@@ -1,0 +1,10 @@
+.header {
+  background-color: var(--c-cerulean);
+
+  &__wrapper {
+    display: flex;
+    padding: var(--spaceBig);
+    max-width: var(--wrapperWidth);
+    margin: 0 auto;
+  }
+}

@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import { SeoProps } from 'common/Seo/models.d'
+import { SeoProps } from 'common/Seo/models.d';
+import { WindowLocation } from '@reach/router';
 
 export interface BaseComponentProps {}
 
@@ -23,6 +24,47 @@ export interface ButtonProps {
   ariaLabel?: string;
 }
 
-export interface IndexPageProps  {
-  siteMetadata: 
+export interface IPost {
+  id: string;
+  html: string;
+  excerpt: string;
+  fields: {
+    slug: string;
+  };
+  frontmatter: {
+    date: string;
+    description: string;
+    title: string;
+  };
+}
+
+type TLocation = WindowLocation;
+
+export interface PostTemplateProps {
+  data: {
+    site: { siteMetadata: SeoProps };
+    markdownRemark: IPost;
+    previous: {
+      fields: { slug: string };
+      frontmatter: {
+        title: string;
+      };
+    };
+    next: {
+      fields: { slug: string };
+      frontmatter: {
+        title: string;
+      };
+    };
+  };
+  location: TLocation;
+}
+
+export interface IndexPageProps {
+  data: {
+    site: { siteMetadata: SeoProps };
+    allMarkdownRemark: {
+      nodes: IPost[];
+    };
+  };
 }

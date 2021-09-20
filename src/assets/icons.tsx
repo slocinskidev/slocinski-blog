@@ -1,10 +1,10 @@
 import { IconifyIcon } from '@iconify/react';
-import roundSearch from '@iconify/icons-ic/round-search';
+import bxSearch from '@iconify/icons-bx/bx-search';
 
 type TIcons = Record<string, IconifyIcon>;
 
 const icons: TIcons = {
-  roundSearch,
+  bxSearch,
 };
 
 export default icons;

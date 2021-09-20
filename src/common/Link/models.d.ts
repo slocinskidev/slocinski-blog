@@ -1,4 +1,4 @@
-export type LinkVariant = 'nav' | 'regular' | 'hamburger';
+export type LinkVariant = 'regular';
 
 export interface LinkProps {
   children: string | React.ReactNode;

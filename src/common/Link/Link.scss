@@ -1,23 +1,10 @@
-@import 'styles/common/component-set';
-
 .link {
-  font-size: 16px;
+  font-size: 1.6rem;
   text-decoration: none;
+  color: var(--c-black);
+  transition: 0.3s color ease-in-out;
+}
 
-  &--nav {
-    padding: 0 1rem;
-
-    @include breakpoint(lg-up) {
-      padding: 0 1.75rem;
-    }
-  }
-
-  &--hamburger {
-    padding: 24px 0;
-    @include font-size(26);
-
-    &:last-of-type {
-      padding: 24px 0 48px;
-    }
-  }
+.link:hover {
+  color: var(--c-cerulean);
 }

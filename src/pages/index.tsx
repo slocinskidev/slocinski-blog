@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { Link, graphql } from 'gatsby';
 
-import Bio from '../components/bio';
+import Bio from 'components/Bio';
 import Layout from 'layout/Layout';
 import Seo from 'common/Seo';
 
-const BlogIndex = ({ data }: any) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`;
-  const posts = data.allMarkdownRemark.nodes;
+import { IndexPageProps, IPost } from 'types';
+
+const BlogIndex = ({ data: { site, allMarkdownRemark } }: IndexPageProps) => {
+  const siteTitle = site.siteMetadata?.title || `Title`;
+  const posts = allMarkdownRemark.nodes;
 
   if (!posts.length) {
     return (
@@ -24,7 +26,7 @@ const BlogIndex = ({ data }: any) => {
       <Seo title="All posts" />
       <Bio />
       <ol style={{ listStyle: `none` }}>
-        {posts.map((post: any) => {
+        {posts.map((post: IPost) => {
           const title = post.frontmatter.title || post.fields.slug;
 
           return (

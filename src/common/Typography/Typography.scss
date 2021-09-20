@@ -1,5 +1,4 @@
-@import 'styles/common/component-set.scss';
-@import './utils.scss';
+@use 'utils.scss';
 
 .typography {
   font-weight: auto;

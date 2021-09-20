@@ -5,13 +5,14 @@ import Bio from '../components/bio';
 import Layout from 'layout/Layout';
 import Seo from 'common/Seo';
 
-const BlogPostTemplate = ({ data, location }) => {
+import { PostTemplateProps } from 'types';
+
+const BlogPostTemplate = ({ data }: PostTemplateProps) => {
   const post = data.markdownRemark;
-  const siteTitle = data.site.siteMetadata?.title || `Title`;
   const { previous, next } = data;
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout>
       <Seo
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}

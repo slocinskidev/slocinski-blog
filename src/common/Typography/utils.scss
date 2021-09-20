@@ -36,3 +36,7 @@ $defaultPaddings: (
     text-align: #{$option};
   }
 }
+
+@mixin font-size($target, $context: $font-size-base) {
+  font-size: ($target / $context) * 1rem;
+}

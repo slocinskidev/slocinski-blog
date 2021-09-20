@@ -3,7 +3,8 @@
   --fontMedium: 500;
   --fontBold: 700;
   --fontFamily-sans: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
-  --c-persianPink: #f16cad;
+  --c-cerulean: #019ee3;
+  --c-maroonFlush: #b81d47;
   --c-grey1: #333;
   --c-grey2: #666;
   --c-grey3: #999;
@@ -26,6 +27,8 @@
   --spaceNarrow: 1.5rem;
   --spaceRegular: 2rem;
   --spaceBig: 3.6rem;
+  --footerHeight: 10rem;
+  --wrapperWidth: 1920px;
 }
 
 html {
@@ -41,9 +44,8 @@ body {
 
 .main {
   margin: 0 auto;
-  max-width: 1920px;
-  padding: var(--spaceSmall);
+  max-width: var(--wrapperWidth);
+  padding: 0 var(--spaceSmall);
   display: grid;
-  grid-template-columns: 1fr 300px;
-  grid-column-gap: 5rem;
+  min-height: calc(100vh - var(--footerHeight));
 }
