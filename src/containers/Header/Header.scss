@@ -1,5 +1,5 @@
 .header {
-  background-color: $c-primary;
+  background-color: $c-white;
 
   &__wrapper {
     display: flex;
@@ -16,7 +16,7 @@
   }
 
   &__logo {
-    width: 100px;
+    width: 300px;
   }
 
   &__title {

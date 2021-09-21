@@ -6,16 +6,27 @@ import { ROOT_PATH } from 'utils/constants';
 
 import { ILogo } from './models';
 
-const Logo: FC<ILogo> = ({ customClass }) => {
+const Logo: FC<ILogo> = ({
+  customClass,
+  secondary,
+  alt = 'logo',
+  to = ROOT_PATH,
+}) => {
   const logoLinkClassnames = classNames('logo', customClass);
 
+  const renderLogo = secondary ? (
+    <StaticImage
+      src="../../images/logo-secondary.png"
+      alt={alt}
+      placeholder="blurred"
+    />
+  ) : (
+    <StaticImage src="../../images/logo.png" alt={alt} placeholder="blurred" />
+  );
+
   return (
-    <Link className={logoLinkClassnames} to={ROOT_PATH}>
-      <StaticImage
-        src="../../images/logo.png"
-        alt="Logo"
-        placeholder="blurred"
-      />
+    <Link className={logoLinkClassnames} to={to}>
+      {renderLogo}
     </Link>
   );
 };

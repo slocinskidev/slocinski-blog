@@ -2,6 +2,9 @@
 
 .typography {
   font-weight: auto;
+  margin: 1rem 0 2rem 0;
+  padding: 0;
+  line-height: 1.5;
 
   &--regular {
     font-weight: 400;
@@ -23,7 +26,7 @@
     font-size: 2.6rem;
 
     @include breakpoint(md-up) {
-      font-size: 5.7rem;
+      font-size: 4.2rem;
     }
   }
 
@@ -31,7 +34,7 @@
     font-size: 2.4rem;
 
     @include breakpoint(md-up) {
-      font-size: 4.2rem;
+      font-size: 3rem;
     }
   }
 
@@ -60,7 +63,7 @@
   }
 
   &--body2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   &--body3 {
