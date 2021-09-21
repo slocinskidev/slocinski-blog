@@ -1,11 +1,15 @@
 import * as React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
+import Link from 'common/Link';
 
 import Bio from 'components/Bio';
 import Layout from 'layout/Layout';
 import Seo from 'common/Seo';
+import Typography from 'common/Typography';
 
 import { PostTemplateProps } from 'types';
+
+import './PostTemplate.scss';
 
 const PostTemplate = ({ data }: PostTemplateProps) => {
   const PostTemplate = data.markdownRemark;
@@ -25,35 +29,42 @@ const PostTemplate = ({ data }: PostTemplateProps) => {
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1>{PostTemplate.frontmatter.title}</h1>
-          <p>{PostTemplate.frontmatter.date}</p>
+          <Typography variant="h2">{PostTemplate.frontmatter.title}</Typography>
+          <Typography variant="body3">
+            {PostTemplate.frontmatter.date}
+          </Typography>
         </header>
-        <section dangerouslySetInnerHTML={{ __html: PostTemplate.html }} />
-        <hr />
+        <Typography
+          variant="body2"
+          dangerouslySetInnerHTML={PostTemplate.html}
+        />
         <footer>
           <Bio />
         </footer>
 
         <nav className="post-template__nav">
-          <ul
-            style={{
-              display: `flex`,
-              flexWrap: `wrap`,
-              justifyContent: `space-between`,
-              listStyle: `none`,
-              padding: 0,
-            }}
-          >
+          <Typography variant="h3" align="center">
+            If you are interested, check it out 👇
+          </Typography>
+          <ul className="nav__list">
             <li>
               {previous && (
-                <Link to={previous.fields.slug} rel="prev">
+                <Link
+                  customClass="nav__item"
+                  url={previous.fields.slug}
+                  ariaLabel="previous post"
+                >
                   ← {previous.frontmatter.title}
                 </Link>
               )}
             </li>
             <li>
               {next && (
-                <Link to={next.fields.slug} rel="next">
+                <Link
+                  customClass="nav__item"
+                  url={next.fields.slug}
+                  ariaLabel="next post"
+                >
                   {next.frontmatter.title} →
                 </Link>
               )}
@@ -70,8 +81,8 @@ export default PostTemplate;
 export const pageQuery = graphql`
   query PostTemplateBySlug(
     $id: String!
-    $previousPostTemplateId: String
-    $nextPostTemplateId: String
+    $previousPostId: String
+    $nextPostId: String
   ) {
     site {
       siteMetadata {
@@ -88,7 +99,7 @@ export const pageQuery = graphql`
         description
       }
     }
-    previous: markdownRemark(id: { eq: $previousPostTemplateId }) {
+    previous: markdownRemark(id: { eq: $previousPostId }) {
       fields {
         slug
       }
@@ -96,7 +107,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    next: markdownRemark(id: { eq: $nextPostTemplateId }) {
+    next: markdownRemark(id: { eq: $nextPostId }) {
       fields {
         slug
       }

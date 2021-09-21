@@ -23,7 +23,7 @@ const Articles = ({ posts }: { posts: IPost[] }) => {
                     {title}
                   </Link>
                 </Typography>
-                <small className="post__date">{post.frontmatter.date}</small>
+                <Typography variant="body3">{post.frontmatter.date}</Typography>
               </header>
               <section>
                 <Typography

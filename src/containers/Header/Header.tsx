@@ -10,10 +10,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header__wrapper">
-        <Logo customClass="header__logo" />
-        <Typography customClass="header__title" variant="h1">
-          SLOCINSKI.DEV Blog
-        </Typography>
+        <Logo customClass="header__logo" secondary />
         <InputSearch
           type="text"
           handleOnChange={(e) => setValue(e.target.value)}

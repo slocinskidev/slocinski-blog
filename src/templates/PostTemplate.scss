@@ -1,0 +1,19 @@
+.post-template {
+  margin: $gap-huge auto;
+  max-width: $text-wrapper;
+}
+
+.nav {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: 0;
+  }
+
+  &__item {
+    font-size: 2rem;
+    padding: 2rem;
+  }
+}
