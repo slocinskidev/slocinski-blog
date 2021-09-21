@@ -4,10 +4,11 @@ import { Layout } from 'layout';
 import Seo from 'common/Seo';
 import Articles from 'containers/Articles';
 import Typography from 'common/Typography';
+import { resultsToArticles } from 'utils/resultsToArticles';
 // @ts-ignore
 import { useFlexSearch } from 'react-use-flexsearch';
 
-import { IPost } from 'types';
+import { IPost, IFlatSearchResults } from 'types';
 
 import './search.scss';
 
@@ -20,21 +21,12 @@ const SearchPage = ({
   const params = new URLSearchParams(location.search.slice(1));
   const searchTerm = params.get('q') || '';
 
-  const results: any[] = useFlexSearch(searchTerm, index, store);
+  const results: IFlatSearchResults[] = useFlexSearch(searchTerm, index, store);
 
-  const resultsToPost: IPost[] = results.map((result) => ({
-    excerpt: result.excerpt,
-    fields: {
-      slug: result.slug,
-    },
-    frontmatter: {
-      date: result.date,
-      title: result.title,
-    },
-  }));
+  const posts = resultsToArticles(results);
 
-  const renderArticles = resultsToPost.length ? (
-    <Articles posts={resultsToPost} />
+  const renderArticles = posts.length ? (
+    <Articles posts={posts} />
   ) : (
     <Typography variant="body1">There are no results 😥</Typography>
   );

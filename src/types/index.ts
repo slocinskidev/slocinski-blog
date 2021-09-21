@@ -68,3 +68,10 @@ export interface IndexPageProps {
     };
   };
 }
+
+export interface IFlatSearchResults {
+  excerpt: string;
+  slug: string;
+  date: string;
+  title: string;
+}
