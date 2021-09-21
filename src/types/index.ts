@@ -25,15 +25,15 @@ export interface ButtonProps {
 }
 
 export interface IPost {
-  id: string;
-  html: string;
+  id?: string;
+  html?: string;
   excerpt: string;
   fields: {
     slug: string;
   };
   frontmatter: {
     date: string;
-    description: string;
+    description?: string;
     title: string;
   };
 }
@@ -67,4 +67,21 @@ export interface IndexPageProps {
       nodes: IPost[];
     };
   };
+}
+
+export interface IFlatSearchResults {
+  excerpt: string;
+  slug: string;
+  date: string;
+  title: string;
+}
+
+export interface ILocalSearchPages {
+  index: string;
+  store: Record<string, IFlatSearchResults>[];
+}
+
+export interface SearchPageProps {
+  data: { localSearchPages: ILocalSearchPages };
+  location: TLocation;
 }

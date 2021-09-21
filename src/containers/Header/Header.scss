@@ -6,17 +6,23 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: $gap-small;
+    padding: $gap-large;
     max-width: $wrapper;
     margin: 0 auto;
 
     @include breakpoint(md-up) {
       flex-direction: row;
+      padding: $gap-small;
     }
   }
 
   &__logo {
     width: 300px;
+    margin-bottom: $gap-large;
+
+    @include breakpoint(md-up) {
+      margin-bottom: 0;
+    }
   }
 
   &__title {

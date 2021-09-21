@@ -4,7 +4,6 @@ import { navigate } from '@reach/router';
 
 import './Header.scss';
 import Logo from 'common/Logo';
-import Typography from 'common/Typography';
 
 const Header = () => {
   const [value, setValue] = React.useState<string>('');

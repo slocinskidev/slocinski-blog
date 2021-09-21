@@ -1,53 +1,60 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
-import { Index } from 'lunr';
+import { graphql } from 'gatsby';
 import { Layout } from 'layout';
-import SEO from 'common/Seo';
-import { IndexPageProps } from 'types';
+import Seo from 'common/Seo';
+import Articles from 'containers/Articles';
+import Typography from 'common/Typography';
+import { resultsToArticles } from 'utils/resultsToArticles';
+// @ts-ignore
+import { useFlexSearch } from 'react-use-flexsearch';
 
-const SearchPage = ({ data, location }: any) => {
+import { IFlatSearchResults, SearchPageProps } from 'types';
+
+import './search.scss';
+
+const SearchPage = ({
+  data: {
+    localSearchPages: { index, store },
+  },
+  location,
+}: SearchPageProps) => {
   const params = new URLSearchParams(location.search.slice(1));
-  const q = params.get('q') || '';
+  const searchTerm = params.get('q') || '';
 
-  console.log(data);
+  const results: IFlatSearchResults[] = useFlexSearch(searchTerm, index, store);
+  const posts = resultsToArticles(results);
 
-  const { store } = data.LunrIndex;
-  const index = Index.load(data.LunrIndex.index);
-  let results = [];
-  try {
-    results = index.search(q).map(({ ref }) => {
-      return {
-        slug: ref,
-        ...store[ref],
-      };
-    });
-  } catch (error) {
-    console.log(error);
-  }
+  const renderSearchResults = searchTerm ? (
+    <Typography customClass="search-results" gutterTop={4} variant="h2">
+      Search results: <cite>"{searchTerm}"</cite>
+    </Typography>
+  ) : (
+    <Typography gutterTop={4} variant="h1">
+      What are you looking for?
+    </Typography>
+  );
+
+  const renderArticles = posts.length ? (
+    <Articles posts={posts} />
+  ) : (
+    <Typography variant="body1">There are no results 😥</Typography>
+  );
+
   return (
     <Layout>
-      <SEO title="Search results" />
-      {q ? <h1>Search results</h1> : <h1>What are you looking for?</h1>}
-      {results.length ? (
-        results.map((result) => {
-          return (
-            <article key={result.slug}>
-              <h2>
-                <Link to={result.slug}>{result.title || result.slug}</Link>
-              </h2>
-              <p>{result.excerpt}</p>
-            </article>
-          );
-        })
-      ) : (
-        <p>Nothing found.</p>
-      )}
+      <Seo title="Search results" />
+      {renderSearchResults}
+      {renderArticles}
     </Layout>
   );
 };
 export default SearchPage;
+
 export const pageQuery = graphql`
-  query Search {
-    LunrIndex
+  query {
+    localSearchPages {
+      index
+      store
+    }
   }
 `;
