@@ -5,4 +5,4 @@ import 'typeface-montserrat';
 import 'prismjs/themes/prism.css';
 
 // import global styles
-import './src/styles/styles.scss';
+import './src/styles/main.scss';
