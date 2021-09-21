@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import Typography from 'common/Typography';
+import Link from 'common/Link';
 
 import './Bio.scss';
 
@@ -38,15 +39,16 @@ const Bio = () => {
         alt="Profile picture"
       />
       {author?.name && (
-        // <Typography variant="h2" customClass="bio__description">
-        <p className="bio__description">
-          My name is <strong>{author.name}</strong> and I am{' '}
-          {author?.summary || null}. {` `}You can also follow me on Twitter{' '}
-          <a href={`https://twitter.com/${social?.twitter || ``}`}>
+        <Typography variant="body2" customClass="bio__description">
+          My name is <strong>{author.name}</strong>. I am{' '}
+          {author?.summary || null} {` `}You can also{' '}
+          <Link
+            customClass="bio__twitter"
+            url={`https://twitter.com/${social?.twitter || ``}`}
+          >
             Follow me on Twitter! 🚀
-          </a>
-        </p>
-        // </Typography>
+          </Link>
+        </Typography>
       )}
     </section>
   );

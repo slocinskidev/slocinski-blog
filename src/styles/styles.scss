@@ -1,0 +1,19 @@
+/* Global styles
+****************************************** */
+
+html {
+  font-size: 62.5%; // 1rem => 10px
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-size: $font-size-base;
+  font-family: $font-base;
+  background-color: $c-pageBackground;
+}

@@ -1,6 +1,7 @@
 .bio {
   padding: 6rem 0;
   display: flex;
+  flex-direction: column;
   width: 100%;
   align-items: center;
 
@@ -9,7 +10,8 @@
     border-radius: 50%;
   }
 
-  &__description {
+  &__twitter {
     font-size: 2rem;
+    color: $c-secondary;
   }
 }

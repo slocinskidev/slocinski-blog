@@ -3,8 +3,23 @@
 
   &__wrapper {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     padding: $gap-large;
     max-width: $wrapper;
     margin: 0 auto;
+
+    @include breakpoint(md-up) {
+      flex-direction: row;
+    }
+  }
+
+  &__logo {
+    width: 100px;
+  }
+
+  &__title {
+    color: $c-white;
   }
 }

@@ -1,14 +1,3 @@
-html {
-  font-size: 62.5%; // 1rem => 10px
-}
-
-body {
-  font-size: $font-size-base;
-  box-sizing: border-box;
-  font-family: $font-base;
-  background-color: $c-pageBackground;
-}
-
 .main {
   margin: 0 auto;
   max-width: $wrapper;

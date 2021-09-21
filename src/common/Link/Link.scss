@@ -2,7 +2,7 @@
   font-size: $font-size-base;
   text-decoration: none;
   color: $c-black;
-  transition: 0.3s color ease-in-out;
+  transition: color $transition-time $transition-animation;
 }
 
 .link:hover {

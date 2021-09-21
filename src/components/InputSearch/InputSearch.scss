@@ -1,6 +1,6 @@
 .input-search {
   width: 100%;
-  max-width: 30rem;
+  max-width: 300px;
   height: 4.8rem;
   position: relative;
   color: $c-doveGray;
@@ -11,10 +11,10 @@
     display: inline-block;
     background-color: $c-white;
     color: $c-black;
+    padding-left: 50px;
     border: none;
     border-radius: $border-radius-medium;
     box-shadow: $box-shadow;
-    padding-left: $gap-xxlarge;
     outline: 0;
     transition: box-shadow $transition-time $transition-animation;
 

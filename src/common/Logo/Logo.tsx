@@ -15,9 +15,6 @@ const Logo: FC<ILogo> = ({ customClass }) => {
         src="../../images/logo.png"
         alt="Logo"
         placeholder="blurred"
-        layout="fixed"
-        width={50}
-        height={50}
       />
     </Link>
   );
