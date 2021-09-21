@@ -75,3 +75,13 @@ export interface IFlatSearchResults {
   date: string;
   title: string;
 }
+
+export interface ILocalSearchPages {
+  index: string;
+  store: Record<string, IFlatSearchResults>[];
+}
+
+export interface SearchPageProps {
+  data: { localSearchPages: ILocalSearchPages };
+  location: TLocation;
+}

@@ -8,7 +8,7 @@ import { resultsToArticles } from 'utils/resultsToArticles';
 // @ts-ignore
 import { useFlexSearch } from 'react-use-flexsearch';
 
-import { IPost, IFlatSearchResults } from 'types';
+import { IFlatSearchResults, SearchPageProps } from 'types';
 
 import './search.scss';
 
@@ -17,12 +17,11 @@ const SearchPage = ({
     localSearchPages: { index, store },
   },
   location,
-}: any) => {
+}: SearchPageProps) => {
   const params = new URLSearchParams(location.search.slice(1));
   const searchTerm = params.get('q') || '';
 
   const results: IFlatSearchResults[] = useFlexSearch(searchTerm, index, store);
-
   const posts = resultsToArticles(results);
 
   const renderArticles = posts.length ? (
