@@ -1,0 +1,20 @@
+.articles {
+  list-style-type: none;
+
+  &__post {
+    background-color: $c-white;
+    margin-bottom: $gap-small;
+    padding: $gap-large;
+  }
+}
+
+.post {
+  &__title {
+    font-size: 3rem;
+  }
+
+  &__date {
+    font-size: 1.6rem;
+    margin-bottom: $gap-small;
+  }
+}
