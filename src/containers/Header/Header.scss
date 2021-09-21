@@ -1,10 +1,10 @@
 .header {
-  background-color: var(--c-cerulean);
+  background-color: $c-primary;
 
   &__wrapper {
     display: flex;
-    padding: var(--spaceBig);
-    max-width: var(--wrapperWidth);
+    padding: $gap-large;
+    max-width: $wrapper;
     margin: 0 auto;
   }
 }

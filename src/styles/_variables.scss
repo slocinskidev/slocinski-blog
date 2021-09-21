@@ -1,0 +1,55 @@
+/* Borders
+****************************************** */
+$border: 3px solid $c-black;
+$border-radius-small: 10px;
+$border-radius-medium: 20px;
+$border-radius-round: 50%;
+
+/* Fonts
+****************************************** */
+$font-montserrat: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+$font-arial: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+
+$font-base: $font-montserrat;
+$font-heading: $font-montserrat;
+
+$font-size-base: 1.6rem;
+
+/* Wrappers
+****************************************** */
+$wrapper: 1920px;
+$footer-height: 100px;
+
+/* Paddings, Margins
+****************************************** */
+$gap-xxsmall: 5px;
+$gap-xsmall: 10px;
+$gap-small: 15px;
+$gap-regular: 20px;
+$gap-large: 30px;
+$gap-xlarge: 40px;
+$gap-xxlarge: 50px;
+$gap-xxxlarge: 60px;
+$gap-huge: 80px;
+
+/* Box-shadows
+****************************************** */
+$box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+$box-shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.19),
+  0 6px 6px rgba(0, 0, 0, 0.23);
+
+/* Transition
+****************************************** */
+$transition-time: 0.3s;
+$transition-animation: ease-in-out;
+
+/* Z-index
+****************************************** */
+$z-index: (
+  underGround: -1,
+  ground: 1,
+  overGround: 2,
+  header: 10,
+  topModalOverlay: 9998,
+  topModal: 9999,
+);

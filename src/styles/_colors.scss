@@ -1,0 +1,42 @@
+/* Base Colors
+************************************************************** */
+$c-cerulean: #019ee3;
+$c-maroonFlush: #b81d47;
+$c-mineShaft: #333;
+$c-doveGray: #666;
+$c-dustyGray: #999;
+$c-silver: #c8c8c8;
+$c-alabaster: #fafafa;
+$c-white: #fff;
+$c-codGray: #0c0c0c;
+$c-red: #ff3333;
+$c-persianBlue: #1f47d1;
+$c-goldenDream: #e4ec27;
+
+$c-black: $c-codGray;
+
+/* Colors with an alpha channel
+************************************************************** */
+$c-50-white: rgba($c-white, 0.5);
+$c-50-black: rgba($c-black, 0.5);
+
+/* Theme Colors
+************************************************************** */
+$c-primary: $c-cerulean;
+$c-secondary: $c-maroonFlush;
+
+$c-textColor: $c-black;
+$c-textColorInverse: $c-white;
+
+$c-info: $c-persianBlue;
+$c-infoText: $c-white;
+
+$c-danger: $c-red;
+$c-dangerText: $c-white;
+
+$c-warning: $c-goldenDream;
+$c-warningText: $c-white;
+
+$c-pageBackground: $c-alabaster;
+$c-boxBackground: $c-white;
+$c-overlayBackground: $c-50-black;

@@ -1,10 +1,10 @@
 .link {
-  font-size: 1.6rem;
+  font-size: $font-size-base;
   text-decoration: none;
-  color: var(--c-black);
+  color: $c-black;
   transition: 0.3s color ease-in-out;
 }
 
 .link:hover {
-  color: var(--c-cerulean);
+  color: $c-primary;
 }

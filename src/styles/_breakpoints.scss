@@ -1,3 +1,19 @@
+/* Grid - media queries
++************************************************************** */
+
+$breakpoints: (
+  xs: 480px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1600px,
+);
+
+@function create-breakpoint($grid-name) {
+  @return ('screen and (min-width: #{map-get($breakpoints, $grid-name)})');
+}
+
 @mixin breakpoint($point) {
   $query-direction: '';
   $query-point: '';
@@ -26,20 +42,3 @@
     @content;
   }
 }
-
-// @mixin button($backgroundColor: var(--c-cerulean), $textColor: var(--c-white)) {
-//   font-size: 1rem;
-//   font-weight: 500;
-//   color: $textColor;
-//   display: inline-block;
-//   padding: var(--spaceSmall) var(--spaceBig);
-//   cursor: pointer;
-//   background-color: $backgroundColor;
-//   border: 0;
-//   border-radius: 6px;
-//   transition: 0.3s;
-
-//   &:hover {
-//     background-color: darken($backgroundColor, 10%);
-//   }
-// }

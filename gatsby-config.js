@@ -15,23 +15,31 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        additionalData: `@use 'globals' as *;`,
+        sassOptions: {
+          includePaths: [`${__dirname}/src/styles`],
+        },
+      },
+    },
+    {
       resolve: 'gatsby-plugin-root-import',
       options: {
+        layout: path.join(__dirname, 'src/layout'),
+        styles: path.join(__dirname, 'src/styles'),
         assets: path.join(__dirname, 'src/assets'),
         common: path.join(__dirname, 'src/common'),
         components: path.join(__dirname, 'src/components'),
         containers: path.join(__dirname, 'src/containers'),
         images: path.join(__dirname, 'src/images'),
-        layout: path.join(__dirname, 'src/layout'),
         pages: path.join(__dirname, 'src/pages'),
-        styles: path.join(__dirname, 'src/styles'),
         templates: path.join(__dirname, 'src/templates'),
         types: path.join(__dirname, 'src/types'),
         utils: path.join(__dirname, 'src/utils'),
         src: path.join(__dirname, 'src'),
       },
     },
-    'gatsby-plugin-sass',
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,

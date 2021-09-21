@@ -1,9 +1,8 @@
 .footer {
-  height: var(--footerHeight);
-  background-color: red;
+  height: $footer-height;
   display: grid;
   place-items: center;
-  background-color: var(--c-white);
+  background-color: $c-boxBackground;
 
   &__link {
     text-decoration: none;

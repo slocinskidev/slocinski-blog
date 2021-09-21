@@ -1,14 +1,18 @@
-@use 'utils.scss';
+@import 'utils';
 
 .typography {
   font-weight: auto;
 
-  &--bold {
-    font-weight: 600;
+  &--regular {
+    font-weight: 400;
   }
 
-  &--black {
-    font-weight: 900;
+  &--medium {
+    font-weight: 500;
+  }
+
+  &--bold {
+    font-weight: 700;
   }
 
   &--italic {
@@ -16,26 +20,26 @@
   }
 
   &--h1 {
-    @include font-size(26);
+    font-size: 2.6rem;
 
     @include breakpoint(md-up) {
-      @include font-size(57);
+      font-size: 5.7rem;
     }
   }
 
   &--h2 {
-    @include font-size(24);
+    font-size: 2.4rem;
 
     @include breakpoint(md-up) {
-      @include font-size(42);
+      font-size: 4.2rem;
     }
   }
 
   &--h3 {
-    @include font-size(24);
+    font-size: 2.4rem;
 
     @include breakpoint(md-up) {
-      @include font-size(32);
+      font-size: 3.2rem;
     }
   }
 
@@ -44,47 +48,35 @@
   }
 
   &--sub-h2 {
-    @include font-size(18);
+    font-size: 1.8rem;
 
     @include breakpoint(md-up) {
-      @include font-size(24);
+      font-size: 2.4rem;
     }
   }
 
   &--body1 {
-    @include font-size(16);
-
-    @include breakpoint(xs-up) {
-      @include font-size(20);
-    }
+    font-size: 2.4rem;
   }
 
   &--body2 {
-    @include font-size(14);
-
-    @include breakpoint(md-up) {
-      @include font-size(18);
-    }
+    font-size: 2rem;
   }
 
   &--body3 {
-    @include font-size(14);
+    font-size: 1.6rem;
   }
 
   &--body4 {
-    @include font-size(14);
-
-    @include breakpoint(md-up) {
-      @include font-size(16);
-    }
+    font-size: 1.4rem;
   }
 
   &--body5 {
-    @include font-size(12);
+    font-size: 1.2rem;
   }
 
   &--body6 {
-    @include font-size(22);
+    font-size: 1rem;
   }
 }
 
