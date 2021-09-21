@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Link, graphql } from 'gatsby';
+import React, { useState } from 'react';
+import { graphql } from 'gatsby';
 
 import Bio from 'components/Bio';
 import Layout from 'layout/Layout';
@@ -8,7 +8,7 @@ import Articles from 'containers/Articles';
 
 import { IndexPageProps } from 'types';
 
-const BlogIndex = ({ data: { site, allMarkdownRemark } }: IndexPageProps) => {
+const BlogIndex = ({ data: { allMarkdownRemark } }: IndexPageProps) => {
   const posts = allMarkdownRemark.nodes;
 
   if (!posts.length) {

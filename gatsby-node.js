@@ -1,5 +1,8 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const striptags = require(`striptags`);
+const lunr = require(`lunr`);
+const { GraphQLJSONObject } = require('graphql-type-json');
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
@@ -45,6 +48,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         component: blogPost,
         context: {
           id: post.id,
+          slug: post.fields.slug,
           previousPostId,
           nextPostId,
         },
@@ -101,4 +105,61 @@ exports.createSchemaCustomization = ({ actions }) => {
       slug: String
     }
   `);
+};
+
+exports.createResolvers = ({ cache, createResolvers }) => {
+  createResolvers({
+    Query: {
+      LunrIndex: {
+        type: GraphQLJSONObject,
+        resolve: (source, args, context, info) => {
+          const blogNodes = context.nodeModel.getAllNodes({
+            type: `MarkdownRemark`,
+          });
+          const type = info.schema.getType(`MarkdownRemark`);
+          return createIndex(blogNodes, type, cache);
+        },
+      },
+    },
+  });
+};
+
+const createIndex = async (blogNodes, type, cache) => {
+  const cacheKey = `IndexLunr`;
+  const cached = await cache.get(cacheKey);
+  if (cached) {
+    return cached;
+  }
+  const documents = [];
+  const store = {};
+  for (const node of blogNodes) {
+    const { slug } = node.fields;
+    const title = node.frontmatter.title;
+    const [html, excerpt] = await Promise.all([
+      type.getFields().html.resolve(node),
+      type.getFields().excerpt.resolve(node, { pruneLength: 40 }),
+    ]);
+    documents.push({
+      slug,
+      title: node.frontmatter.title,
+      content: striptags(html),
+    });
+
+    store[slug] = {
+      title,
+      excerpt,
+    };
+  }
+  const index = lunr(function () {
+    this.ref('slug');
+    this.field('title');
+    this.field('content');
+    for (const doc of documents) {
+      this.add(doc);
+    }
+  });
+
+  const json = { index: index.toJSON(), store };
+  await cache.set(cacheKey, json);
+  return json;
 };
