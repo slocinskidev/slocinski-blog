@@ -8,7 +8,7 @@ import Articles from 'containers/Articles';
 
 import { IndexPageProps } from 'types';
 
-const BlogIndex = ({ data: { site, allMarkdownRemark } }: IndexPageProps) => {
+const BlogIndex = ({ data: { allMarkdownRemark } }: IndexPageProps) => {
   const posts = allMarkdownRemark.nodes;
 
   if (!posts.length) {

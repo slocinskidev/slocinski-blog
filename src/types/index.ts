@@ -25,15 +25,15 @@ export interface ButtonProps {
 }
 
 export interface IPost {
-  id: string;
-  html: string;
+  id?: string;
+  html?: string;
   excerpt: string;
   fields: {
     slug: string;
   };
   frontmatter: {
     date: string;
-    description: string;
+    description?: string;
     title: string;
   };
 }
