@@ -1,5 +1,7 @@
 .articles {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
 
   &__post {
     background-color: $c-white;
