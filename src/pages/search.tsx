@@ -5,7 +5,7 @@ import { Layout } from 'layout';
 import SEO from 'common/Seo';
 import { IndexPageProps } from 'types';
 
-const SearchPage = ({ data }: any) => {
+const SearchPage = ({ data, location }: any) => {
   const params = new URLSearchParams(location.search.slice(1));
   const q = params.get('q') || '';
 
