@@ -40,6 +40,12 @@ module.exports = {
         src: path.join(__dirname, 'src'),
       },
     },
+    {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: `slocinski-blog`,
+      },
+    },
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
