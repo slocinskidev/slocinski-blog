@@ -6,14 +6,55 @@ import Bio from 'components/Bio';
 import Layout from 'layout/Layout';
 import Seo from 'common/Seo';
 import Typography from 'common/Typography';
+//@ts-ignore
+import { Disqus, CommentCount } from 'gatsby-plugin-disqus';
 
 import { PostTemplateProps } from 'types';
 
 import './PostTemplate.scss';
 
-const PostTemplate = ({ data }: PostTemplateProps) => {
+const PostTemplate = ({ data, location }: PostTemplateProps) => {
   const PostTemplate = data.markdownRemark;
   const { previous, next } = data;
+
+  const disqusConfig = {
+    url: `https://slocinski-blog.netlify.app/${location.pathname}`,
+    identifier: PostTemplate.id,
+    title: PostTemplate.frontmatter.title,
+  };
+
+  const renderPostNav =
+    previous || next ? (
+      <nav className="post-template__nav">
+        <Typography variant="h3" align="center">
+          If you are interested, check it out 👇
+        </Typography>
+        <ul className="nav__list">
+          <li>
+            {previous && (
+              <Link
+                customClass="nav__item"
+                url={previous.fields.slug}
+                ariaLabel="previous post"
+              >
+                ← {previous.frontmatter.title}
+              </Link>
+            )}
+          </li>
+          <li>
+            {next && (
+              <Link
+                customClass="nav__item"
+                url={next.fields.slug}
+                ariaLabel="next post"
+              >
+                {next.frontmatter.title} →
+              </Link>
+            )}
+          </li>
+        </ul>
+      </nav>
+    ) : null;
 
   return (
     <Layout>
@@ -33,6 +74,7 @@ const PostTemplate = ({ data }: PostTemplateProps) => {
           <Typography variant="body3">
             {PostTemplate.frontmatter.date}
           </Typography>
+          <CommentCount config={disqusConfig} placeholder={'...'} />
         </header>
         <Typography
           variant="body2"
@@ -41,36 +83,8 @@ const PostTemplate = ({ data }: PostTemplateProps) => {
         <footer>
           <Bio />
         </footer>
-
-        <nav className="post-template__nav">
-          <Typography variant="h3" align="center">
-            If you are interested, check it out 👇
-          </Typography>
-          <ul className="nav__list">
-            <li>
-              {previous && (
-                <Link
-                  customClass="nav__item"
-                  url={previous.fields.slug}
-                  ariaLabel="previous post"
-                >
-                  ← {previous.frontmatter.title}
-                </Link>
-              )}
-            </li>
-            <li>
-              {next && (
-                <Link
-                  customClass="nav__item"
-                  url={next.fields.slug}
-                  ariaLabel="next post"
-                >
-                  {next.frontmatter.title} →
-                </Link>
-              )}
-            </li>
-          </ul>
-        </nav>
+        {renderPostNav}
+        <Disqus config={disqusConfig} />
       </article>
     </Layout>
   );
