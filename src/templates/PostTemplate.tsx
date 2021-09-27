@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 import Link from 'common/Link';
 
@@ -13,14 +13,20 @@ import { PostTemplateProps } from 'types';
 
 import './PostTemplate.scss';
 
-const PostTemplate = ({ data, location }: PostTemplateProps) => {
-  const PostTemplate = data.markdownRemark;
+const PostTemplate = ({ data, location: { pathname } }: PostTemplateProps) => {
+  const post = data.markdownRemark;
+  const {
+    excerpt,
+    html,
+    id,
+    frontmatter: { date, description, title },
+  } = post;
   const { previous, next } = data;
 
   const disqusConfig = {
-    url: `https://slocinski-blog.netlify.app/${location.pathname}`,
-    identifier: PostTemplate.id,
-    title: PostTemplate.frontmatter.title,
+    url: `https://slocinski-blog.netlify.app/${pathname}`,
+    identifier: id,
+    title: title,
   };
 
   const renderPostNav =
@@ -58,27 +64,21 @@ const PostTemplate = ({ data, location }: PostTemplateProps) => {
 
   return (
     <Layout>
-      <Seo
-        title={PostTemplate.frontmatter.title}
-        description={
-          PostTemplate.frontmatter.description || PostTemplate.excerpt
-        }
-      />
+      <Seo title={title} description={description || excerpt} />
       <article
         className="post-template"
         itemScope
         itemType="http://schema.org/Article"
       >
         <header>
-          <Typography variant="h2">{PostTemplate.frontmatter.title}</Typography>
-          <Typography variant="body3">
-            {PostTemplate.frontmatter.date}
-          </Typography>
-          <CommentCount config={disqusConfig} placeholder={'...'} />
+          <Typography variant="h2">{title}</Typography>
+          <Typography variant="body3">{date}</Typography>
+          <CommentCount config={disqusConfig} placeholder={'No comments...'} />
         </header>
         <Typography
-          variant="body2"
-          dangerouslySetInnerHTML={PostTemplate.html}
+          customClass="post-template__text"
+          variant="body3"
+          dangerouslySetInnerHTML={html}
         />
         <footer>
           <Bio />

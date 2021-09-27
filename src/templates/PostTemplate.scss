@@ -5,6 +5,12 @@
   &__nav {
     padding-bottom: $gap-large;
   }
+
+  &__text {
+    & * {
+      width: 100%;
+    }
+  }
 }
 
 .nav {
