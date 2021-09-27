@@ -1,5 +1,6 @@
 .header {
   background-color: $c-white;
+  min-height: $header-height;
 
   &__wrapper {
     display: flex;

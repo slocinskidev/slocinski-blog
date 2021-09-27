@@ -25,7 +25,7 @@ export interface ButtonProps {
 }
 
 export interface IPost {
-  id?: string;
+  id: string;
   html?: string;
   excerpt: string;
   fields: {
@@ -58,6 +58,10 @@ export interface PostTemplateProps {
     };
   };
   location: TLocation;
+}
+
+export interface ArticlesProps {
+  posts: IPost[];
 }
 
 export interface IndexPageProps {

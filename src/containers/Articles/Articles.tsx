@@ -1,17 +1,29 @@
 import React from 'react';
-import { IPost } from 'types';
+import { ArticlesProps, IPost } from 'types';
 import Link from 'common/Link';
 import Typography from 'common/Typography';
+//@ts-ignore
+import { CommentCount } from 'gatsby-plugin-disqus';
+import { disqusConfigCreator } from 'utils/config';
 
 import './Articles.scss';
 
-const Articles = ({ posts }: { posts: IPost[] }) => {
+const Articles = ({ posts }: ArticlesProps) => {
   const renderArticles = posts
     ? posts.map((post: IPost) => {
-        const title = post.frontmatter.title || post.fields.slug;
+        const {
+          excerpt,
+          frontmatter: { title: frontmatterTitle, date, description },
+          fields: { slug },
+          id,
+        } = post;
+
+        const title = frontmatterTitle || slug;
+        const { pathname } = location;
+        const disqusConfig = disqusConfigCreator(pathname, id, title);
 
         return (
-          <li key={post.fields.slug}>
+          <li key={slug}>
             <article
               className="articles__post"
               itemScope
@@ -19,18 +31,20 @@ const Articles = ({ posts }: { posts: IPost[] }) => {
             >
               <header>
                 <Typography variant="h2">
-                  <Link url={post.fields.slug} customClass="post__title">
+                  <Link url={slug} customClass="post__title">
                     {title}
                   </Link>
                 </Typography>
-                <Typography variant="body3">{post.frontmatter.date}</Typography>
+                <CommentCount
+                  config={disqusConfig}
+                  placeholder={'No comments...'}
+                />
+                <Typography variant="body3">{date}</Typography>
               </header>
               <section>
                 <Typography
                   variant="body2"
-                  dangerouslySetInnerHTML={
-                    post.frontmatter.description || post.excerpt
-                  }
+                  dangerouslySetInnerHTML={description || excerpt}
                 />
               </section>
             </article>

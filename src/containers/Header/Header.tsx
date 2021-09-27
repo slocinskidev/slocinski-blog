@@ -8,7 +8,7 @@ import Logo from 'common/Logo';
 const Header = () => {
   const [value, setValue] = React.useState<string>('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const submitSearchPhrase = (e: React.FormEvent) => {
     e.preventDefault();
     navigate(`/search?q=${value}`);
     setValue('');
@@ -18,7 +18,7 @@ const Header = () => {
     <header className="header">
       <div className="header__wrapper">
         <Logo customClass="header__logo" secondary />
-        <form role="search" onSubmit={handleSubmit}>
+        <form role="search" onSubmit={submitSearchPhrase}>
           <InputSearch
             type="text"
             handleOnChange={(e) => setValue(e.target.value)}

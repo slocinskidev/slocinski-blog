@@ -2,6 +2,9 @@
 title: Hello World 2
 date: '2021-09-20'
 description: 'This is my first post on my new blog! How exciting!'
+tags:
+  - info
+  - gatsby
 ---
 
 This is my first post on my new blog! How exciting!

@@ -16,9 +16,9 @@ const SearchPage = ({
   data: {
     localSearchPages: { index, store },
   },
-  location,
+  location: { search },
 }: SearchPageProps) => {
-  const params = new URLSearchParams(location.search.slice(1));
+  const params = new URLSearchParams(search.slice(1));
   const searchTerm = params.get('q') || '';
 
   const results: IFlatSearchResults[] = useFlexSearch(searchTerm, index, store);

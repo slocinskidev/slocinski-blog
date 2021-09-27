@@ -5,6 +5,7 @@ import Bio from 'components/Bio';
 import Layout from 'layout/Layout';
 import Seo from 'common/Seo';
 import Articles from 'containers/Articles';
+import Typography from 'common/Typography';
 
 import { IndexPageProps } from 'types';
 
@@ -14,9 +15,9 @@ const BlogIndex = ({ data: { allMarkdownRemark } }: IndexPageProps) => {
   if (!posts.length) {
     return (
       <Layout>
-        <Seo title="All posts" />
+        <Seo title="No blog posts found" />
         <Bio />
-        <p>No blog posts found.</p>
+        <Typography variant="body2">No blog posts found.</Typography>
       </Layout>
     );
   }

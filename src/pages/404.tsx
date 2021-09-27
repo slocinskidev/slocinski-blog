@@ -1,9 +1,13 @@
-import React from "react"
+import React from 'react';
+import { Layout } from 'layout';
+import Typography from 'common/Typography';
 
 const NotFound = () => (
-  <main>
-    <p>Sorry, page not found!</p>
-  </main>
-)
+  <Layout>
+    <Typography align="center" gutterTop={4} variant="body1">
+      Sorry, page not found!
+    </Typography>
+  </Layout>
+);
 
-export default NotFound
+export default NotFound;

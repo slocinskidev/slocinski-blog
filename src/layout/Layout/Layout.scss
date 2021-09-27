@@ -4,5 +4,5 @@
   padding: 0 $gap-xsmall;
   display: grid;
   align-content: start;
-  min-height: calc(100vh - $footer-height);
+  min-height: calc(100vh - $footer-height - $header-height);
 }

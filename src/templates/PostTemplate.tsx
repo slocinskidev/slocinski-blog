@@ -8,6 +8,7 @@ import Seo from 'common/Seo';
 import Typography from 'common/Typography';
 //@ts-ignore
 import { Disqus, CommentCount } from 'gatsby-plugin-disqus';
+import { disqusConfigCreator } from 'utils/config';
 
 import { PostTemplateProps } from 'types';
 
@@ -23,11 +24,7 @@ const PostTemplate = ({ data, location: { pathname } }: PostTemplateProps) => {
   } = post;
   const { previous, next } = data;
 
-  const disqusConfig = {
-    url: `https://slocinski-blog.netlify.app/${pathname}`,
-    identifier: id,
-    title: title,
-  };
+  const disqusConfig = disqusConfigCreator(pathname, id, title);
 
   const renderPostNav =
     previous || next ? (
