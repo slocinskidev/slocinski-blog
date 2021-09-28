@@ -1,6 +1,7 @@
 import React from 'react';
 import { TagTemplateProps, IPost } from 'types';
 import Link from 'common/Link';
+import { Layout } from 'layout';
 
 import { graphql } from 'gatsby';
 
@@ -25,11 +26,11 @@ const TagTemplate = ({
   );
 
   return (
-    <div>
+    <Layout>
       <h1>{tagHeader}</h1>
       <ul>{renderPosts}</ul>
       <Link url="/tags">All tags</Link>
-    </div>
+    </Layout>
   );
 };
 
