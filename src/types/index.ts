@@ -28,6 +28,7 @@ export interface IPost {
   id: string;
   html?: string;
   excerpt: string;
+  timeToRead: number;
   fields: {
     slug: string;
   };
@@ -35,6 +36,7 @@ export interface IPost {
     date: string;
     description?: string;
     title: string;
+    tags: string[];
   };
 }
 
@@ -88,4 +90,23 @@ export interface ILocalSearchPages {
 export interface SearchPageProps {
   data: { localSearchPages: ILocalSearchPages };
   location: TLocation;
+}
+
+export interface TagTemplateProps {
+  data: { allMarkdownRemark: { nodes: IPost[]; totalCount: number } };
+  pageContext: { tag: string };
+}
+
+export interface ITagsGroup {
+  fieldValue: string;
+  totalCount: number;
+}
+
+export interface TagsPageProps {
+  data: {
+    site: { siteMetadata: SeoProps };
+    allMarkdownRemark: {
+      group: ITagsGroup[];
+    };
+  };
 }

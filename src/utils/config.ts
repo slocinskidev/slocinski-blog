@@ -4,7 +4,7 @@ export const disqusConfigCreator = (
   title: string,
 ) => {
   return {
-    url: `https://slocinski-blog.netlify.app/${pathname}`,
+    url: `https://slocinski-blog.netlify.app${pathname}`,
     identifier: id,
     title: title,
   };

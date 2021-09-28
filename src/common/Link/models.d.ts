@@ -1,4 +1,4 @@
-export type LinkVariant = 'regular';
+export type LinkVariant = 'regular' | 'tag';
 
 export interface LinkProps {
   children: string | React.ReactNode;

@@ -3,8 +3,21 @@
   text-decoration: none;
   color: $c-black;
   transition: color $transition-time $transition-animation;
-}
 
-.link:hover {
-  color: $c-primary;
+  &:hover {
+    color: $c-primary;
+  }
+
+  &--tag {
+    background-color: $c-primary;
+    padding: $gap-xxsmall $gap-xsmall;
+    margin: $gap-xxsmall;
+    color: $c-white;
+    transition: background-color $transition-time $transition-animation;
+
+    &:hover {
+      color: $c-white;
+      background-color: $c-secondary;
+    }
+  }
 }

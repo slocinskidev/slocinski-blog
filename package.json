@@ -37,6 +37,7 @@
     "gatsby-transformer-remark": "^4.10.0",
     "gatsby-transformer-sharp": "^3.13.0",
     "graphql-type-json": "^0.3.2",
+    "lodash": "^4.17.21",
     "lunr": "^2.3.9",
     "normalize.css": "^8.0.1",
     "prismjs": "^1.25.0",

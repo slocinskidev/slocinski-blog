@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArticlesProps, IPost } from 'types';
 import Link from 'common/Link';
+import Tags from 'common/Tags';
 import Typography from 'common/Typography';
 //@ts-ignore
 import { CommentCount } from 'gatsby-plugin-disqus';
@@ -13,8 +14,9 @@ const Articles = ({ posts }: ArticlesProps) => {
     ? posts.map((post: IPost) => {
         const {
           excerpt,
-          frontmatter: { title: frontmatterTitle, date, description },
+          frontmatter: { title: frontmatterTitle, date, description, tags },
           fields: { slug },
+          timeToRead,
           id,
         } = post;
 
@@ -35,11 +37,17 @@ const Articles = ({ posts }: ArticlesProps) => {
                     {title}
                   </Link>
                 </Typography>
-                <CommentCount
-                  config={disqusConfig}
-                  placeholder={'No comments...'}
-                />
-                <Typography variant="body3">{date}</Typography>
+
+                <Typography italic variant="body4">
+                  {date}
+                </Typography>
+                <Typography italic variant="body4">
+                  Time to read: {timeToRead}min
+                </Typography>
+                <Typography italic variant="body4">
+                  <CommentCount config={disqusConfig} placeholder={'...'} />
+                </Typography>
+                <Tags tags={tags} />
               </header>
               <section>
                 <Typography

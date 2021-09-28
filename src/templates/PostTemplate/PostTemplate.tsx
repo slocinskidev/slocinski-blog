@@ -6,6 +6,7 @@ import Bio from 'components/Bio';
 import Layout from 'layout/Layout';
 import Seo from 'common/Seo';
 import Typography from 'common/Typography';
+import Tags from 'common/Tags';
 //@ts-ignore
 import { Disqus, CommentCount } from 'gatsby-plugin-disqus';
 import { disqusConfigCreator } from 'utils/config';
@@ -20,7 +21,8 @@ const PostTemplate = ({ data, location: { pathname } }: PostTemplateProps) => {
     excerpt,
     html,
     id,
-    frontmatter: { date, description, title },
+    timeToRead,
+    frontmatter: { date, description, title, tags },
   } = post;
   const { previous, next } = data;
 
@@ -69,8 +71,16 @@ const PostTemplate = ({ data, location: { pathname } }: PostTemplateProps) => {
       >
         <header>
           <Typography variant="h2">{title}</Typography>
-          <Typography variant="body3">{date}</Typography>
-          <CommentCount config={disqusConfig} placeholder={'No comments...'} />
+          <Typography italic variant="body4">
+            {date}
+          </Typography>
+          <Typography italic variant="body4">
+            Time to read: {timeToRead}min
+          </Typography>
+          <Typography italic variant="body4">
+            <CommentCount config={disqusConfig} placeholder={'...'} />
+          </Typography>
+          <Tags tags={tags} />
         </header>
         <Typography
           customClass="post-template__text"
@@ -104,10 +114,12 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      timeToRead
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        tags
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
