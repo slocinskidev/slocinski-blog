@@ -40,7 +40,7 @@ export interface IPost {
   };
 }
 
-type TLocation = WindowLocation;
+export type TLocation = WindowLocation;
 
 export interface PostTemplateProps {
   data: {

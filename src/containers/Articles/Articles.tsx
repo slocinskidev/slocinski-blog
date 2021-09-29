@@ -1,8 +1,9 @@
-import React from 'react';
-import { ArticlesProps, IPost } from 'types';
+import React, { useState, useEffect } from 'react';
+import { ArticlesProps, IPost, TLocation } from 'types';
 import Link from 'common/Link';
 import Tags from 'common/Tags';
 import Typography from 'common/Typography';
+import { isBrowser } from 'utils/isBrowser';
 //@ts-ignore
 import { CommentCount } from 'gatsby-plugin-disqus';
 import { disqusConfigCreator } from 'utils/config';
@@ -10,6 +11,7 @@ import { disqusConfigCreator } from 'utils/config';
 import './Articles.scss';
 
 const Articles = ({ posts }: ArticlesProps) => {
+  const [pathname, setPathname] = useState<string>('');
   const renderArticles = posts
     ? posts.map((post: IPost) => {
         const {
@@ -20,8 +22,14 @@ const Articles = ({ posts }: ArticlesProps) => {
           id,
         } = post;
 
+        useEffect(() => {
+          if (isBrowser()) {
+            setPathname(window.location.pathname);
+          }
+        }, [pathname]);
+
         const title = frontmatterTitle || slug;
-        const { pathname } = location && location;
+
         const disqusConfig = disqusConfigCreator(pathname, id, title);
 
         return (
