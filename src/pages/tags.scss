@@ -1,0 +1,12 @@
+.tags-page {
+  &__list {
+    list-style-type: none;
+  }
+
+  &__item {
+    margin-bottom: $gap-small;
+  }
+  &__link {
+    font-size: 2rem;
+  }
+}

@@ -10,6 +10,8 @@ import _ from 'lodash';
 
 import { graphql } from 'gatsby';
 
+import './tags.scss';
+
 const TagsPage = ({
   data: {
     allMarkdownRemark: { group },
@@ -19,8 +21,11 @@ const TagsPage = ({
   },
 }: TagsPageProps) => {
   const renderTags = group.map(({ fieldValue, totalCount }: ITagsGroup) => (
-    <li key={fieldValue}>
-      <Link url={`/tags/${_.kebabCase(fieldValue)}/`}>
+    <li key={fieldValue} className="tags-page__item">
+      <Link
+        customClass="tags-page__link"
+        url={`/tags/${_.kebabCase(fieldValue)}/`}
+      >
         {fieldValue} ({totalCount})
       </Link>
     </li>
@@ -33,7 +38,7 @@ const TagsPage = ({
       <Typography variant="h2" gutterTop={4}>
         Tags
       </Typography>
-      <ul>{renderTags}</ul>
+      <ul className="tags-page__list">{renderTags}</ul>
     </Layout>
   );
 };
