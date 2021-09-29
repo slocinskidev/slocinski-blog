@@ -21,7 +21,7 @@ const Articles = ({ posts }: ArticlesProps) => {
         } = post;
 
         const title = frontmatterTitle || slug;
-        const { pathname } = location;
+        const { pathname } = location && location;
         const disqusConfig = disqusConfigCreator(pathname, id, title);
 
         return (
