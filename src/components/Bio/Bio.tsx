@@ -39,7 +39,11 @@ const Bio = () => {
         alt="Profile picture"
       />
       {author?.name && (
-        <Typography variant="body2" customClass="bio__description">
+        <Typography
+          variant="body2"
+          gutterTop={3}
+          customClass="bio__description"
+        >
           My name is <strong>{author.name}</strong>. I am{' '}
           {author?.summary || null} {` `}You can also{' '}
           <Link

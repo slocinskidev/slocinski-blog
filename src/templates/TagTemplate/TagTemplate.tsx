@@ -1,35 +1,41 @@
 import React from 'react';
-import { TagTemplateProps, IPost } from 'types';
+import { TagTemplateProps } from 'types';
 import Link from 'common/Link';
+import Typography from 'common/Typography';
+import Articles from 'containers/Articles';
 import { Layout } from 'layout';
+import { TAG_SEPARATOR } from 'utils/constants';
 
 import { graphql } from 'gatsby';
+
+import './TagTemplate.scss';
 
 const TagTemplate = ({
   pageContext: { tag },
   data: {
-    allMarkdownRemark: { nodes, totalCount },
+    allMarkdownRemark: { nodes: posts, totalCount },
   },
 }: TagTemplateProps) => {
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? '' : 's'
   } tagged with "${tag}"`;
 
-  const renderPosts = nodes?.map(
-    ({ fields: { slug }, frontmatter: { title } }: IPost) => {
-      return (
-        <li key={slug}>
-          <Link url={slug}>{title}</Link>
-        </li>
-      );
-    },
-  );
-
   return (
     <Layout>
-      <h1>{tagHeader}</h1>
-      <ul>{renderPosts}</ul>
-      <Link url="/tags">All tags</Link>
+      <section className="tag-template">
+        <Typography variant="h2" gutterBottom={4}>
+          {tagHeader}
+        </Typography>
+        <Articles posts={posts} />
+
+        <Link
+          customClass="tag-template__link"
+          variant="tag"
+          url={TAG_SEPARATOR}
+        >
+          All tags
+        </Link>
+      </section>
     </Layout>
   );
 };
@@ -45,11 +51,17 @@ export const pageQuery = graphql`
     ) {
       totalCount
       nodes {
+        excerpt
         fields {
           slug
         }
+        id
+        timeToRead
         frontmatter {
+          date(formatString: "MMMM DD, YYYY")
           title
+          description
+          tags
         }
       }
     }

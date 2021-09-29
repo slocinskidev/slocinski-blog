@@ -69,7 +69,7 @@ const PostTemplate = ({ data, location: { pathname } }: PostTemplateProps) => {
         itemScope
         itemType="http://schema.org/Article"
       >
-        <header>
+        <header className="post-template__info">
           <Typography variant="h2">{title}</Typography>
           <Typography italic variant="body4">
             {date}
@@ -77,7 +77,7 @@ const PostTemplate = ({ data, location: { pathname } }: PostTemplateProps) => {
           <Typography italic variant="body4">
             Time to read: {timeToRead}min
           </Typography>
-          <Typography italic variant="body4">
+          <Typography italic variant="body4" gutterBottom={2}>
             <CommentCount config={disqusConfig} placeholder={'...'} />
           </Typography>
           <Tags tags={tags} />

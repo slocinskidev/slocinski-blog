@@ -2,6 +2,10 @@
   margin: $gap-huge auto;
   max-width: $text-wrapper;
 
+  &__info {
+    border-bottom: 2px solid rgba($c-black, 0.05);
+  }
+
   &__nav {
     padding-bottom: $gap-large;
   }

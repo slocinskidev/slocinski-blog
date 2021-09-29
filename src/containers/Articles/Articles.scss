@@ -6,11 +6,24 @@
   &__post {
     background-color: $c-white;
     margin-bottom: $gap-small;
-    padding: $gap-large;
+    padding: $gap-small;
+    border-radius: $border-radius-xsmall;
+
+    @include breakpoint(md-up) {
+      padding: $gap-large;
+    }
   }
 }
 
 .post {
+  &__header {
+    margin-bottom: $gap-small;
+  }
+
+  &__info {
+    border-bottom: 2px solid $c-pageBackground;
+  }
+
   &__title {
     font-size: 3rem;
   }

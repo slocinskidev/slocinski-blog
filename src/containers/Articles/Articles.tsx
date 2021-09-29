@@ -39,23 +39,24 @@ const Articles = ({ posts }: ArticlesProps) => {
               itemScope
               itemType="http://schema.org/Article"
             >
-              <header>
+              <header className="post__header">
                 <Typography variant="h2">
                   <Link url={slug} customClass="post__title">
                     {title}
                   </Link>
                 </Typography>
-
-                <Typography italic variant="body4">
-                  {date}
-                </Typography>
-                <Typography italic variant="body4">
-                  Time to read: {timeToRead}min
-                </Typography>
-                <Typography italic variant="body4">
-                  <CommentCount config={disqusConfig} placeholder={'...'} />
-                </Typography>
-                <Tags tags={tags} />
+                <section className="post__info">
+                  <Typography italic variant="body4">
+                    {date}
+                  </Typography>
+                  <Typography italic variant="body4">
+                    Time to read: {timeToRead}min
+                  </Typography>
+                  <Typography italic variant="body4" gutterBottom={2}>
+                    <CommentCount config={disqusConfig} placeholder={'...'} />
+                  </Typography>
+                  <Tags tags={tags} />
+                </section>
               </header>
               <section>
                 <Typography

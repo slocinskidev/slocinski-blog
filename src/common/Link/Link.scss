@@ -13,6 +13,7 @@
     padding: $gap-xxsmall $gap-xsmall;
     margin: $gap-xxsmall;
     color: $c-white;
+    border-radius: $border-radius-xsmall;
     transition: background-color $transition-time $transition-animation;
 
     &:hover {
