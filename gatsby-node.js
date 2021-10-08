@@ -17,7 +17,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const result = await graphql(`
     {
-      postsRemark: allMarkdownRemark(
+      postsRemark: allMdx(
         sort: { order: DESC, fields: [frontmatter___date] }
         limit: 2000
       ) {
@@ -31,7 +31,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
       }
-      tagsGroup: allMarkdownRemark(limit: 2000) {
+      tagsGroup: allMdx(limit: 2000) {
         group(field: frontmatter___tags) {
           fieldValue
         }
@@ -84,7 +84,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
-  if (node.internal.type === `MarkdownRemark`) {
+  if (node.internal.type === `Mdx`) {
     const value = createFilePath({ node, getNode });
 
     createNodeField({
@@ -138,9 +138,9 @@ exports.createResolvers = ({ cache, createResolvers }) => {
         type: GraphQLJSONObject,
         resolve: (source, args, context, info) => {
           const blogNodes = context.nodeModel.getAllNodes({
-            type: `MarkdownRemark`,
+            type: `Mdx`,
           });
-          const type = info.schema.getType(`MarkdownRemark`);
+          const type = info.schema.getType(`Mdx`);
           return createIndex(blogNodes, type, cache);
         },
       },
@@ -159,14 +159,14 @@ const createIndex = async (blogNodes, type, cache) => {
   for (const node of blogNodes) {
     const { slug } = node.fields;
     const title = node.frontmatter.title;
-    const [html, excerpt] = await Promise.all([
-      type.getFields().html.resolve(node),
+    const [body, excerpt] = await Promise.all([
+      type.getFields().body.resolve(node),
       type.getFields().excerpt.resolve(node, { pruneLength: 40 }),
     ]);
     documents.push({
       slug,
       title: node.frontmatter.title,
-      content: striptags(html),
+      content: striptags(body),
     });
 
     store[slug] = {

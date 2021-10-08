@@ -10,16 +10,17 @@ import Tags from 'common/Tags';
 //@ts-ignore
 import { Disqus, CommentCount } from 'gatsby-plugin-disqus';
 import { disqusConfigCreator } from 'utils/config';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import { PostTemplateProps } from 'types';
 
 import './PostTemplate.scss';
 
 const PostTemplate = ({ data, location: { pathname } }: PostTemplateProps) => {
-  const post = data.markdownRemark;
+  const post = data.mdx;
   const {
     excerpt,
-    html,
+    body,
     id,
     timeToRead,
     frontmatter: { date, description, title, tags },
@@ -82,11 +83,7 @@ const PostTemplate = ({ data, location: { pathname } }: PostTemplateProps) => {
           </Typography>
           <Tags tags={tags} />
         </header>
-        <Typography
-          customClass="post-template__text"
-          variant="body3"
-          dangerouslySetInnerHTML={html}
-        />
+        <MDXRenderer>{body}</MDXRenderer>
         <footer>
           <Bio />
         </footer>
@@ -110,10 +107,10 @@ export const pageQuery = graphql`
         title
       }
     }
-    markdownRemark(id: { eq: $id }) {
+    mdx(id: { eq: $id }) {
       id
       excerpt(pruneLength: 160)
-      html
+      body
       timeToRead
       frontmatter {
         title
@@ -122,7 +119,7 @@ export const pageQuery = graphql`
         tags
       }
     }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
+    previous: mdx(id: { eq: $previousPostId }) {
       fields {
         slug
       }
@@ -130,7 +127,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    next: markdownRemark(id: { eq: $nextPostId }) {
+    next: mdx(id: { eq: $nextPostId }) {
       fields {
         slug
       }

@@ -26,7 +26,7 @@ export interface ButtonProps {
 
 export interface IPost {
   id: string;
-  html?: string;
+  body: string;
   excerpt: string;
   timeToRead: number;
   fields: {
@@ -45,7 +45,7 @@ export type TLocation = WindowLocation;
 export interface PostTemplateProps {
   data: {
     site: { siteMetadata: SeoProps };
-    markdownRemark: IPost;
+    mdx: IPost;
     previous: {
       fields: { slug: string };
       frontmatter: {
@@ -69,7 +69,7 @@ export interface ArticlesProps {
 export interface IndexPageProps {
   data: {
     site: { siteMetadata: SeoProps };
-    allMarkdownRemark: {
+    allMdx: {
       nodes: IPost[];
     };
   };
@@ -93,7 +93,7 @@ export interface SearchPageProps {
 }
 
 export interface TagTemplateProps {
-  data: { allMarkdownRemark: { nodes: IPost[]; totalCount: number } };
+  data: { allMdx: { nodes: IPost[]; totalCount: number } };
   pageContext: { tag: string };
 }
 
@@ -105,7 +105,7 @@ export interface ITagsGroup {
 export interface TagsPageProps {
   data: {
     site: { siteMetadata: SeoProps };
-    allMarkdownRemark: {
+    allMdx: {
       group: ITagsGroup[];
     };
   };

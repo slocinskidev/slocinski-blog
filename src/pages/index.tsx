@@ -9,8 +9,8 @@ import Typography from 'common/Typography';
 
 import { IndexPageProps } from 'types';
 
-const BlogIndex = ({ data: { allMarkdownRemark } }: IndexPageProps) => {
-  const posts = allMarkdownRemark.nodes;
+const BlogIndex = ({ data: { allMdx } }: IndexPageProps) => {
+  const posts = allMdx.nodes;
 
   if (!posts.length) {
     return (
@@ -35,7 +35,7 @@ export default BlogIndex;
 
 export const pageQuery = graphql`
   query Articles {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
         excerpt
         fields {
