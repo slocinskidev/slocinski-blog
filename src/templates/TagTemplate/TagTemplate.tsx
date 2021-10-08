@@ -13,7 +13,7 @@ import './TagTemplate.scss';
 const TagTemplate = ({
   pageContext: { tag },
   data: {
-    allMarkdownRemark: { nodes: posts, totalCount },
+    allMdx: { nodes: posts, totalCount },
   },
 }: TagTemplateProps) => {
   const tagHeader = `${totalCount} post${
@@ -44,7 +44,7 @@ export default TagTemplate;
 
 export const pageQuery = graphql`
   query ($tag: String) {
-    allMarkdownRemark(
+    allMdx(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { tags: { in: [$tag] } } }

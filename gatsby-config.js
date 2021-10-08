@@ -61,15 +61,27 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
+        extensions: [`.md`, `.mdx`],
+        gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 630,
+              maxWidth: 590,
+              linkImagesToOriginal: true,
             },
+          },
+          {
+            resolve: `gatsby-remark-copy-linked-files`,
+          },
+          {
+            resolve: `gatsby-remark-smartypants`,
+          },
+          {
+            resolve: `gatsby-plugin-feed`,
           },
           {
             resolve: `gatsby-remark-responsive-iframe`,
@@ -78,8 +90,6 @@ module.exports = {
             },
           },
           `gatsby-remark-prismjs`,
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
         ],
       },
     },
@@ -112,7 +122,7 @@ module.exports = {
         // required.
         query: `
         query {
-          allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+          allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
             nodes {
               excerpt
               fields {
@@ -146,7 +156,7 @@ module.exports = {
         // containing properties to index. The objects must contain the `ref`
         // field above (default: 'id'). This is required.
         normalizer: ({ data }) =>
-          data.allMarkdownRemark.nodes.map((node) => ({
+          data.allMdx.nodes.map((node) => ({
             title: node.frontmatter.title,
             excerpt: node.excerpt,
             date: node.frontmatter.date,
@@ -171,25 +181,25 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.nodes.map((node) => {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.nodes.map((node) => {
                 return Object.assign({}, node.frontmatter, {
                   description: node.excerpt,
                   date: node.frontmatter.date,
                   url: site.siteMetadata.siteUrl + node.fields.slug,
                   guid: site.siteMetadata.siteUrl + node.fields.slug,
-                  custom_elements: [{ 'content:encoded': node.html }],
+                  custom_elements: [{ 'content:encoded': node.body }],
                 });
               });
             },
             query: `
               {
-                allMarkdownRemark(
+                allMdx(
                   sort: { order: DESC, fields: [frontmatter___date] },
                 ) {
                   nodes {
                     excerpt
-                    html
+                    body
                     fields {
                       slug
                     }
